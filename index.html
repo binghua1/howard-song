@@ -170,24 +170,24 @@
       background: #007bff;
       color: #fff;
       border: none;
-      border-radius: 30px;
-      font-size: 1.3rem;
+      border-radius: 20px;
+      font-size: 1rem;
       font-weight: bold;
-      padding: 18px 0 18px 0;
-      margin: 18px auto 0 auto;
-      width: 80%;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      padding: 8px 0 8px 0;
+      margin: 12px auto 0 auto;
+      width: 60%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
     }
     .big-play-btn:hover {
       background: #0056b3;
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
     .play-icon {
-      font-size: 2.1rem;
-      margin-right: 12px;
+      font-size: 1.3rem;
+      margin-right: 8px;
       vertical-align: middle;
     }
 
@@ -366,7 +366,7 @@
         card.className = 'song-card';
         card.id = `card-${index}`;
         card.onclick = (e) => {
-          if (e.target.tagName === 'BUTTON') return;
+          if (e.target.classList.contains('play-btn')) return;
           playSong(index);
         };
 
@@ -379,34 +379,6 @@
             <span class="play-icon">&#9658;</span> 播放
           </button>
         `;
-            /* 大型播放按鈕 */
-            .big-play-btn {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              background: #007bff;
-              color: #fff;
-              border: none;
-              border-radius: 30px;
-              font-size: 1.3rem;
-              font-weight: bold;
-              padding: 18px 0 18px 0;
-              margin: 18px auto 0 auto;
-              width: 80%;
-              box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-              cursor: pointer;
-              transition: background 0.2s, transform 0.1s;
-              letter-spacing: 2px;
-            }
-            .big-play-btn:hover {
-              background: #0056b3;
-              transform: scale(1.05);
-            }
-            .play-icon {
-              font-size: 2.1rem;
-              margin-right: 12px;
-              vertical-align: middle;
-            }
         playlistContainer.appendChild(card);
       });
     }
