@@ -370,16 +370,66 @@
       }
     }
 
+    // 歌詞自動滑動（平均分配）
+    let lyricsTimer = null;
+    let lyricsActiveIndex = -1;
+    let currentLyrics = [];
+
     async function showLyrics(index) {
       lyricsPanel.style.display = 'block';
       panelTitle.innerText = songs[index].title;
-      panelBody.innerText = '載入中...';
-      
-      const lyrics = await loadLyrics(songs[index].lyricsFile);
-      panelBody.innerText = lyrics;
-      
+      panelBody.innerHTML = '<span style="color:#bbb">載入中...</span>';
+
+      const lyricsText = await loadLyrics(songs[index].lyricsFile);
+      currentLyrics = lyricsText.split(/\r?\n/).filter(line => line.trim().length > 0);
+      lyricsActiveIndex = -1;
+      panelBody.innerHTML = currentLyrics.map((l, i) => `<div class=\"lyrics-line\" id=\"lyric-line-${i}\">${l}</div>`).join('');
+
       if (window.innerWidth <= 900) {
         lyricsPanel.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      bindLyricsSync();
+    }
+
+    function closeLyrics() {
+      lyricsPanel.style.display = 'none';
+      unbindLyricsSync();
+    }
+
+    function bindLyricsSync() {
+      unbindLyricsSync();
+      lyricsTimer = setInterval(syncLyrics, 300);
+    }
+    function unbindLyricsSync() {
+      if (lyricsTimer) clearInterval(lyricsTimer);
+      lyricsTimer = null;
+      lyricsActiveIndex = -1;
+    }
+    function syncLyrics() {
+      if (!currentLyrics.length || !audioPlayer.duration) return;
+      const currentTime = audioPlayer.currentTime;
+      const total = currentLyrics.length;
+      // 平均分配每行歌詞的時間
+      const secondsPerLine = audioPlayer.duration / total;
+      let idx = Math.floor(currentTime / secondsPerLine);
+      if (idx >= total) idx = total - 1;
+      if (idx !== lyricsActiveIndex) {
+        if (lyricsActiveIndex >= 0) {
+          const oldLine = document.getElementById(`lyric-line-${lyricsActiveIndex}`);
+          if (oldLine) oldLine.classList.remove('active');
+        }
+        if (idx >= 0) {
+          const newLine = document.getElementById(`lyric-line-${idx}`);
+          if (newLine) {
+            newLine.classList.add('active');
+            // 自動滾動到中間
+            const panel = panelBody;
+            const offset = newLine.offsetTop - panel.offsetHeight/2 + newLine.offsetHeight/2;
+            panel.scrollTo({ top: offset, behavior: 'smooth' });
+          }
+        }
+        lyricsActiveIndex = idx;
       }
     }
 
