@@ -345,7 +345,7 @@
             <h2>${song.title}</h2>
             <div class="play-hint" id="hint-${index}">▶ 點擊播放</div>
           </div>
-          <button class="lyrics-btn" onclick="showLyrics(${index})">📝 查看歌詞</button>
+          <!-- 歌詞按鈕已移除，播放時自動顯示歌詞 -->
         `;
         playlistContainer.appendChild(card);
       });
@@ -359,6 +359,7 @@
       nowPlayingText.innerText = `正在播放：${songs[index].title}`;
       audioPlayer.play();
       updateActiveUI();
+      showLyrics(index); // 播放時自動顯示歌詞
     }
 
     // 更新正在播放的 UI 狀態
