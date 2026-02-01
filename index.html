@@ -160,12 +160,7 @@
       max-height: 55vh;
       overflow-y: auto;
     }
-    .lyrics-line.active {
-      color: #007bff;
-      background: #e6f0ff;
-      font-weight: bold;
-      border-radius: 6px;
-    }
+
 
     /* 底部固定播放器 */
     #player-bar {
@@ -378,9 +373,8 @@
       }
     }
 
-    // 歌詞自動滑動（平均分配）
+    // 歌詞自動滑動（平均分配，不標註行）
     let lyricsTimer = null;
-    let lyricsActiveIndex = -1;
     let currentLyrics = [];
 
     async function showLyrics(index) {
@@ -390,8 +384,7 @@
 
       const lyricsText = await loadLyrics(songs[index].lyricsFile);
       currentLyrics = lyricsText.split(/\r?\n/).filter(line => line.trim().length > 0);
-      lyricsActiveIndex = -1;
-      panelBody.innerHTML = currentLyrics.map((l, i) => `<div class="lyrics-line" id="lyric-line-${i}">${l}</div>`).join('');
+      panelBody.innerHTML = currentLyrics.map((l, i) => `<div class=\"lyrics-line\" id=\"lyric-line-${i}\">${l}</div>`).join('');
 
       if (window.innerWidth <= 900) {
         lyricsPanel.scrollIntoView({ behavior: 'smooth' });
@@ -412,33 +405,23 @@
     function unbindLyricsSync() {
       if (lyricsTimer) clearInterval(lyricsTimer);
       lyricsTimer = null;
-      lyricsActiveIndex = -1;
     }
     function syncLyrics() {
       // 若歌詞面板未顯示則不自動滑動
       if (!currentLyrics.length || !audioPlayer.duration || lyricsPanel.style.display === 'none') return;
       const currentTime = audioPlayer.currentTime;
       const total = currentLyrics.length;
-      // 平均分配每行歌詞的時間
       const secondsPerLine = audioPlayer.duration / total;
       let idx = Math.floor(currentTime / secondsPerLine);
       if (idx >= total) idx = total - 1;
-      if (idx !== lyricsActiveIndex) {
-        if (lyricsActiveIndex >= 0) {
-          const oldLine = document.getElementById(`lyric-line-${lyricsActiveIndex}`);
-          if (oldLine) oldLine.classList.remove('active');
+      // 只做自動滾動，不標註任何一行
+      if (total > 0) {
+        const targetLine = document.getElementById(`lyric-line-${idx}`);
+        if (targetLine) {
+          const panel = panelBody;
+          const offset = targetLine.offsetTop - panel.offsetHeight/2 + targetLine.offsetHeight/2;
+          panel.scrollTo({ top: offset, behavior: 'smooth' });
         }
-        if (idx >= 0) {
-          const newLine = document.getElementById(`lyric-line-${idx}`);
-          if (newLine) {
-            newLine.classList.add('active');
-            // 自動滾動到中間
-            const panel = panelBody;
-            const offset = newLine.offsetTop - panel.offsetHeight/2 + newLine.offsetHeight/2;
-            panel.scrollTo({ top: offset, behavior: 'smooth' });
-          }
-        }
-        lyricsActiveIndex = idx;
       }
     }
 
