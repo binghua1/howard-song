@@ -78,7 +78,6 @@
       background-color: #f0f7ff;
     }
 
-    /* 歌名顏色：改為藍色 */
     .song-card h2 {
       color: #007bff;
       font-size: 1.1rem;
@@ -92,7 +91,6 @@
       margin-bottom: 15px;
     }
 
-    /* 查看歌詞按鈕：改為藍色 */
     .lyrics-btn {
       background-color: #007bff;
       color: white;
@@ -111,7 +109,7 @@
 
     /* 右側歌詞固定面板 */
     .lyrics-side-panel {
-      flex: 1; /* 歌詞佔據較窄比例 */
+      flex: 1; 
       background: white;
       padding: 30px;
       border-radius: 15px;
@@ -120,7 +118,7 @@
       top: 20px;
       max-height: 75vh;
       overflow-y: auto;
-      display: none; /* 初始隱藏，按了查看才出現 */
+      display: none; 
     }
 
     .lyrics-side-panel h3 {
@@ -192,7 +190,6 @@
       height: 40px;
     }
 
-    /* 響應式：手機版改為一排一首 */
     @media (max-width: 900px) {
       .main-layout { flex-direction: column; }
       .song-grid { grid-template-columns: 1fr; width: 100%; }
@@ -236,483 +233,59 @@
     const songs = [
       {
         title: "Howard Lee有很多女朋友",
-        src: "song1.mp3",
-        lyrics: `[Intro]
-(Beat starts, heavy bass)
-Howard...
-Howard...
-Wait, tell me about Howard.
-
-[Verse 1]
-星期一 他在台北
-星期二 他飛去紐約
-手機響不停 通知刷整頁
-每個人都在問 到底是誰
-(Who is he?)
-
-[Pre-Chorus]
-他不是故意 只是太有魅力
-他的行事曆 擠滿了秘密
-妳不用懷疑 也不用訝異
-這就是 Howard 的超能力
-
-[Chorus]
-Howard 有很多女朋友
-Howard 有很多女朋友
-Howard 有很多女朋友
-(Oh my god, so many)
-Howard 有很多女朋友
-Howard 有很多女朋友
-Howard 有很多女朋友
-(He can't stop, won't stop)
-
-[Drop]
-(Heavy Bass Drop)
-Howard 有很多很多很多很多 女朋友
-有很多 女朋友
-Howard!
-有很多 女朋友
-(Yeah!)
-
-[Verse 2]
-左邊一個 右邊一個
-排隊排到了 巷子口
-他說他很累 但他不會走
-這是 Howard 的生活 妳不懂
-(You don't understand)
-
-[Bridge]
-(Music slows down, whispered vocals)
-一個女朋友 (One)
-兩個女朋友 (Two)
-三個女朋友 (Three)
-Howard... 數不清了
-Howard... 太多了
-
-[Build Up]
-Howard 有很多
-Howard 有很多
-Howard 有很多
-有很多 有很多 有很多 有很多
-(Let's Go!)
-
-[Chorus]
-Howard 有很多女朋友
-Howard 有很多女朋友
-Howard 有很多女朋友
-(Everywhere he goes)
-Howard 有很多女朋友
-Howard 有很多女朋友
-Howard 有很多女朋友
-(Legendary Howard)
-
-[Outro]
-Howard...
-有很多...
-女朋友...
-(Fading out)
-Howard...`
+        src: "songs/song1.mp3",
+        lyricsFile: "lyrics/song1.txt"
       },
       {
         title: "螢幕的藍光，映在Howard蒼白的臉",
-        src: "song2.mp3",
-        lyrics: `[Verse 1]
-螢幕的藍光 映在 Howard 蒼白的臉
-房間只剩下 風扇轉動的疲倦
-那條訊息還停留在 凌晨三點
-Howard 試圖用數據 計算失戀的極限
-
-[Pre-Chorus]
-不是說好了一起 升級這世界
-怎麼你的愛 突然斷了線
-Howard 站在原地 像個當機的軟體
-只能不斷重啟 那些舊的回憶
-
-[Chorus]
-你看那個 Howard 左手抓著剛拆封的顯卡
-你看那個 Howard 右手灌著喝不完的啤酒
-他在追求極致的畫質 卻看不清你的理由
-Howard, Oh Howard
-這一刻 只有酒精懂他的溫柔
-
-[Verse 2]
-這張卡很重 Howard 的手微微顫抖
-那瓶酒很冰 刺痛 Howard 的喉嚨
-跑分再高 也跑不出你離開的迷宮
-幀數再多 也補不回那一秒的心動
-
-[Pre-Chorus]
-不是說好了一起 升級這世界
-怎麼你的愛 突然斷了線
-Howard 站在原地 像個當機的軟體
-只能不斷重啟 那些舊的回憶
-
-[Chorus]
-你看那個 Howard 左手抓著剛拆封的顯卡
-你看那個 Howard 右手灌著喝不完的啤酒
-他在追求極致的畫質 卻看不清你的理由
-Howard, Oh Howard
-散熱膏 塗不滿心裡的裂口
-
-[Bridge]
-(Guitar Solo - 帶著一點藍調的憂鬱)
-Howard 想要超頻 讓時間快轉
-Howard 想要降壓 讓痛苦變淡
-可是 Howard 明白 系統已經崩壞
-這一局 沒有存檔 只能重來
-
-[Chorus]
-可憐的 Howard 左手緊握冰冷的顯卡
-醉倒的 Howard 右手灑出苦澀的啤酒
-他在虛擬的世界稱王 卻在現實裡像條狗
-Howard, Howard, Oh Howard
-今晚 只有硬體陪著他發愁
-
-[Outro]
-Howard 放下了顯卡 (Howard...)
-Howard 喝乾了啤酒 (Howard...)
-螢幕終於黑了
-Howard, Howard
-晚安，Howard`
+        src: "songs/song2.mp3",
+        lyricsFile: "lyrics/song2.txt"
       },
       {
         title: "Runtime Error",
-        src: "song3.mp3",
-        lyrics: `[Intro]
-(電吉他輕撥，帶有延遲效果的 clean tone，營造深夜孤寂感)
-(鼓組輕輕進場，大鼓沉重的心跳聲)
-
-[Verse 1]
-凌晨三點的螢幕光
-映在蒼白疲倦的臉龐
-Import error 讓人發慌
-這一夜 又是徒勞一場
-文件翻遍了 還是絕望
-GPU 在空轉 溫度發燙
-我不懂 為何邏輯都正常
-Loss 卻像 斷了線的風箏 一樣
-
-[Pre-Chorus]
-(吉他破音漸強，Bass 線條變重)
-版本不相容 的警告視窗
-像在嘲笑我 的那些夢想
-別 Debug 了 兄弟
-我看我們 需要一點 咖啡因的能量
-
-[Chorus]
-Howard 走啊 去全家
-逃離這堆 混亂的代碼
-這世界 太過複雜
-不如一瓶 冰啤酒 說些醉話
-
-現在 TensorFlow 怎麼爛啦
-API 改得 像個笑話
-想訓練 模型卻崩塌
-原來最難解的 Bug 是 心裡的 掙扎
-
-[Verse 2]
-(回到較輕的節奏，但 Bass 保持律動)
-懷念以前 簡單的寫法
-Session run 起來 意氣風發
-現在 Eager mode 搞得眼花
-相容性 逼人 想要搬家
-轉投 PyTorch 的念頭 發芽
-可是舊專案 還在 垂死掙扎
-這技術債 越疊 越高塔
-壓得我們 喘不過氣 沒辦法
-
-[Pre-Chorus]
-(節奏再次推向高潮)
-又是 OOM 的 錯誤視窗
-像在粉碎我 的那些夢想
-別 Debug 了 兄弟
-我看我們 需要一場 短暫的逃亡
-
-[Chorus]
-Howard 走啊 去全家
-不管那該死的 Data
-這情緒 無處 揮灑
-只剩叮咚聲 能給我 一點回答
-
-現在 TensorFlow 怎麼爛啦
-文件寫得 像天書一樣浮誇
-我的耐心 被它 抹殺
-甚至懷疑自己 是否還適合 寫程式啊
-
-[Guitar Solo]
-(失真吉他 Solo，旋律激昂卻帶有哀傷，模擬內心的吶喊與焦慮)
-
-[Bridge]
-(音樂驟停，只剩鋼琴與人聲)
-或許不是 工具 太差
-是我們 追趕得 太累 太傻
-只想在此刻 停下
-就在 便利商店 的 燈光下......
-
-[Chorus]
-(全樂器爆發，最激昂的一次)
-Howard 走啊 去全家
-去它的 類神經 交叉
-這夜晚 還有點 缺乏
-就是需要 兄弟你 陪我 說說話
-
-現在 TensorFlow 怎麼爛啦 (高八度嘶吼)
-甚至不如 手寫的 演算法
-就讓梯度 隨便 爆炸
-今晚我只想 徹底的 放假
-
-[Outro]
-(吉他 Feedback 漸弱，回到 Intro 的 Clean tone)
-Howard 走啊...
-去全家...
-TensorFlow...
-算了... 走吧...
-
-(叮咚—— 全家開門聲取樣，Fade out)`
+        src: "songs/song3.mp3",
+        lyricsFile: "lyrics/song3.txt"
       },
       {
         title: "Howard的宇宙",
-        src: "song4.mp3",
-        lyrics: `[Verse 1] (主歌 A)
-墨鏡剛戴上 閃光燈就過曝
-他是地心引力 抓不住的那個錯誤
-這條街的規矩 由他腳步來頒布
-自信爆棚的程度 沒人能夠測度
-(Yeah, nobody can handle)
-
-[Pre-Chorus] (導歌)
-不需要導航 迷路也是種藝術
-所有的鏡子 都在等著被他照顧
-他甚至不用開口 只要一個角度
-全場的賀爾蒙 就集體開始加速
-
-[Chorus] (副歌)
-Howard 帥到分手 一跌就摔出宇宙
-(Watch out, he's falling, falling out)
-不需要誰來拯救 反正他這麽享受
-他眼裡沒有女友 因為塞滿了後宮的 Schedule
-(Too busy, too busy, his schedule is full)
-每一秒都在趕場 沒時間天長地久
-
-[Verse 2] (主歌 B)
-手機震動不停 又是誰在排隊
-Alice 還是 Candy 抱歉今晚沒空約會
-不是故意冷漠 是魅力太過昂貴
-想要跟他吃頓飯 得先掛號去排位
-(Wait in line, baby)
-
-[Pre-Chorus] (導歌)
-不需要導航 迷路也是種藝術
-所有的鏡子 都在等著被他照顧
-他甚至不用開口 只要一個角度
-全場的賀爾蒙 就集體開始加速
-
-[Chorus] (副歌)
-Howard 帥到分手 一跌就摔出宇宙
-(Watch out, he's falling, falling out)
-不需要誰來拯救 反正他這麽享受
-他眼裡沒有女友 因為塞滿了後宮的 Schedule
-(Too busy, too busy, his schedule is full)
-每一秒都在趕場 沒時間天長地久
-
-[Bridge] (間奏/過門)
-他們說這叫自戀 我說這是天賦
-(It's a gift, not a curse)
-孤單是什麼感覺 他從來不曾在此停駐
-別問他愛不愛妳 這個問題太過世俗
-他的愛只留給自己 還有那張滿檔的 Schedule
-
-[Guitar/Synth Solo]
-
-[Chorus] (副歌)
-Howard 帥到分手 一跌就摔出宇宙
-(He's out of this world, yeah)
-不需要誰來拯救 反正他這麽享受
-他眼裡沒有女友 因為塞滿了後宮的 Schedule
-這就是 Howard 的宇宙 妳只能在門外守候
-
-[Outro] (尾奏)
-Yeah, Howard.
-He’s busy.
-Don’t call him.
-(Fade out)`
+        src: "songs/song4.mp3",
+        lyricsFile: "lyrics/song4.txt"
       },
       {
         title: "Howard應援曲",
-        src: "song5.mp3",
-        lyrics: `[Intro] (Drums beat kicks in - Stomp-Stomp-Clap rhythm) (Group Chant - Loud and Energetic) Howard! (Hey!) Howard! (Ho!) Howard! (Hey!) Here we go! (Electric Guitar Riff enters, high energy)
-
-[Verse 1] 誰在風中 站得最穩 (Howard!) 誰的眼神 燃燒靈魂 (Howard!) 把挑戰當作 暖身的過程 每一次跌倒 都是為了爬昇
-
-[Verse 2] 不甘平凡 是種天分 (Howard!) 打破極限 就在此刻 (Howard!) 這一條路上 不需要劇本 用實力證明 誰才是主角身份
-
-[Pre-Chorus] (Bass line gets faster) 聽見了嗎 心跳的聲響 看見了嗎 夢想的形狀 準備好 跟著那個名字 一起發光
-
-[Chorus] Howard 領航！ 衝破天際的網 (Howard! Howard! We are going up!) Howard 最強！ 站在新的戰場 (Howard! Howard! Never gonna stop!)
-
-雙手推開 命運的窗 迎接新的輝煌 他的名字 叫做 Howard 這就是新的方向 (Whoa oh oh oh ~ Howard!)
-
-[Verse 3] 誰說極限 不能超越 (Howard!) 誰將改寫 歷史這頁 (Howard!) 昨天的高度 已經在腳下 今天的野心 比天空還要大
-
-[Pre-Chorus] (Intensity rises) 聽見了嗎 勝利的聲響 看見了嗎 專屬的光芒 準備好 跟著這個名字 一起瘋狂
-
-[Chorus] Howard 領航！ 衝破天際的網 (Howard! Howard! We are going up!) Howard 最強！ 站在新的戰場 (Howard! Howard! Never gonna stop!)
-
-雙手推開 命運的窗 迎接新的輝煌 他的名字 叫做 Howard 這就是新的方向
-
-[Bridge] (Music breaks down to Drums and Clapping only) (Crowd chanting style - building up slowly) Say Howard! (Howard!) Say Howard! (Howard!) 再高的山 (Howard!) 再遠的路 (Howard!) 一起喊出 這個名字 (Howard!) 衝向巔峰 就在這一次！ (Scream) Yeah!!!
-
-[Guitar Solo] (Fast-paced, melodic Electric Guitar Solo) (High energy drums)
-
-[Chorus] (Full Band, Maximum Volume, Anthem feel) Howard 領航！ 衝破天際的網 (Howard! Howard! We are going up!) Howard 最強！ 站在新的戰場 (Howard! Howard! Never gonna stop!)
-
-雙手推開 命運的窗 迎接新的輝煌 全世界都看著 Howard 站上新的輝煌！
-
-[Outro] (Guitar feedback fading) (Group Chant fades out) Howard! (領航新高度) Howard! (無人能擋) Howard... (Final Drum Hit)
-`
+        src: "songs/song5.mp3",
+        lyricsFile: "lyrics/song5.txt"
       },
       {
         title: "愛情顧問Howard",
-        src: "song6.mp3",
-        lyrics: `
-	      [Intro]
-(輕快的電吉他分解和弦，鼓點隨後加入，帶著律動感)
-(4 bars)
-
-[Verse 1]
-別再看著手機 發呆嘆氣
-那個已讀不回 其實沒那麼神祕
-我不穿尿布 也沒有翅膀
-我是 Howard 你的專屬愛情經理
-
-這裡沒有魔法 只有邏輯
-把那些偶像劇的情節 通通刪去
-喝杯咖啡 把視線焦距
-對準街角 那個在等雨停的背影
-
-[Pre-Chorus]
-瞄準 不用費力
-紅線 偶爾也會打結需要整理
-深呼吸 (深呼吸)
-這一箭 射向最真實的你自己
-
-[Chorus]
-我是 Howard 沒在跟你客氣
-這一箭射穿 你的猶豫和懷疑
-愛情不是童話 是場對手戲
-別當配角 演得那麼用力
-
-我是 Howard 專治口是心非的病
-這一箭帶著 搖滾的頻率
-清醒一點 聽聽心跳的聲音
-原來真愛 一直就在隔壁 (Stand by)
-
-[Verse 2]
-你說你不夠好 怕受傷
-所以把心牆 築得像座停車場
-空空蕩蕩 卻不讓人進場
-這算哪門子的 避風港？
-
-把弓拉滿 這是我的專業
-不是要你受傷 是要打破那些
-無聊的自卑 無謂的妥協
-這世界 沒時間讓你慢慢 誤解
-
-[Pre-Chorus]
-瞄準 直達紅心
-紅線 這次我幫你綁緊
-深呼吸 (深呼吸)
-準備好 接住這突如其來的幸運
-
-[Chorus]
-我是 Howard 沒在跟你客氣
-這一箭射穿 你的猶豫和懷疑
-愛情不是童話 是場對手戲
-別當配角 演得那麼用力
-
-我是 Howard 專治口是心非的病
-這一箭帶著 搖滾的頻率
-清醒一點 聽聽心跳的聲音
-原來真愛 一直就在隔壁
-
-[Guitar Solo]
-(吉他獨奏，從原本的清亮轉為稍微帶點破音 Drive 的激昂，情緒推高)
-(8 bars)
-
-[Bridge]
-也許會痛 也許會癢
-傷口癒合後 才會長出翅膀
-我不保證 永遠晴朗
-但我保證 這次你不再是一個人 甚至不再需要我也無妨
-
-[Chorus]
-(鼓點加重，全樂器進場)
-我是 Howard 沒在跟你客氣
-這一箭射穿 所有的偽裝和面具
-愛情不是童話 是場對手戲
-去當主角 演得痛快淋漓
-
-我是 Howard 任務已經完畢
-這一箭帶著 祝福的頻率
-睜大眼睛 看看身邊的風景
-那個人 已經走向你
-
-[Outro]
-Yeah, Howard signing off.
-(收起弓箭的音效，吉他刷下最後一個長音)
-祝你好運。
-(Fade out)
-`
+        src: "songs/song6.mp3",
+        lyricsFile: "lyrics/song6.txt"
       },
       {
         title: "Howard是帥潮，因為他潮帥",
-        src: "song7.mp3",
-        lyrics: `
-	      [Intro]
-(沈穩的低音濾波器緩緩開啟，伴隨清脆的腳踏鈸聲)
-Yo, check the vibe.
-不是每個人都能穿出這種味道。
-Howard in the building.
-Get ready.
-
-[Verse 1]
-街頭的聚光燈 自動往他身上靠
-不需要名牌標籤 他的存在就是預告
-步伐踏在節拍上 節奏感他天生抓得牢
-空氣凝結在這一秒 眾人目光都在繞
-那是種本能的顯擺 不用開口也算表態
-潮流的公式他來改 所有的規則都淘汰
-
-[Chorus]
-Howard是帥潮 因為他潮帥
-天生的氣場 誰都學不來
-Howard是帥潮 因為他潮帥
-走在最前面 讓世界去追趕
-(Yeah, he’s the vibe, he’s the wave)
-
-[Verse 2]
-冷色調的視覺 搭配他銳利的雙眼
-穿搭是種藝術 每一細節都是經典
-從頭到腳的層次 像場無聲的盛宴
-別試著去定義他 他就是未來的體現
-低調的奢華 或者是極簡的狂野
-只要他現身 就能瞬間炸裂全場的視野
-
-[Chorus]
-Howard是帥潮 因為他潮帥
-天生的氣場 誰都學不來
-Howard是帥潮 因為他潮帥
-走在最前面 讓世界去追趕
-
-[Outro]
-(音樂漸漸轉為純節奏，808 鼓點逐漸消散)
-記住這個名字。
-Howard.
-Stay fly, stay gold.
-(Fade out)
-`
+        src: "songs/song7.mp3",
+        lyricsFile: "lyrics/song7.txt"
       }
     ];
+
+    // 載入歌詞的快取
+    const lyricsCache = {};
+
+    // 非同步載入歌詞
+    async function loadLyrics(lyricsFile) {
+      if (lyricsCache[lyricsFile]) {
+        return lyricsCache[lyricsFile];
+      }
+      try {
+        const response = await fetch(lyricsFile);
+        const text = await response.text();
+        lyricsCache[lyricsFile] = text;
+        return text;
+      } catch (error) {
+        console.error('載入歌詞失敗:', error);
+        return '歌詞載入失敗';
+      }
+    }
 
     let currentSongIndex = -1;
     let isShuffle = false;
@@ -770,19 +343,19 @@ Stay fly, stay gold.
       }
     }
 
-    // 顯示右側歌詞
-    function showLyrics(index) {
+    async function showLyrics(index) {
       lyricsPanel.style.display = 'block';
       panelTitle.innerText = songs[index].title;
-      panelBody.innerText = songs[index].lyrics;
+      panelBody.innerText = '載入中...';
       
-      // 手機版自動捲動到歌詞區
+      const lyrics = await loadLyrics(songs[index].lyricsFile);
+      panelBody.innerText = lyrics;
+      
       if (window.innerWidth <= 900) {
         lyricsPanel.scrollIntoView({ behavior: 'smooth' });
       }
     }
 
-    // 控制邏輯
     function toggleShuffle() {
       isShuffle = !isShuffle;
       const btn = document.getElementById('btn-shuffle');
