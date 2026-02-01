@@ -157,6 +157,14 @@
       line-height: 1.8;
       color: #444;
       font-size: 15px;
+      max-height: 55vh;
+      overflow-y: auto;
+    }
+    .lyrics-line.active {
+      color: #007bff;
+      background: #e6f0ff;
+      font-weight: bold;
+      border-radius: 6px;
     }
 
     /* 底部固定播放器 */
@@ -383,7 +391,7 @@
       const lyricsText = await loadLyrics(songs[index].lyricsFile);
       currentLyrics = lyricsText.split(/\r?\n/).filter(line => line.trim().length > 0);
       lyricsActiveIndex = -1;
-      panelBody.innerHTML = currentLyrics.map((l, i) => `<div class=\"lyrics-line\" id=\"lyric-line-${i}\">${l}</div>`).join('');
+      panelBody.innerHTML = currentLyrics.map((l, i) => `<div class="lyrics-line" id="lyric-line-${i}">${l}</div>`).join('');
 
       if (window.innerWidth <= 900) {
         lyricsPanel.scrollIntoView({ behavior: 'smooth' });
@@ -407,7 +415,8 @@
       lyricsActiveIndex = -1;
     }
     function syncLyrics() {
-      if (!currentLyrics.length || !audioPlayer.duration) return;
+      // 若歌詞面板未顯示則不自動滑動
+      if (!currentLyrics.length || !audioPlayer.duration || lyricsPanel.style.display === 'none') return;
       const currentTime = audioPlayer.currentTime;
       const total = currentLyrics.length;
       // 平均分配每行歌詞的時間
@@ -433,9 +442,7 @@
       }
     }
 
-    function closeLyrics() {
-      lyricsPanel.style.display = 'none';
-    }
+    // 移除重複定義的 closeLyrics
 
     function toggleShuffle() {
       isShuffle = !isShuffle;
